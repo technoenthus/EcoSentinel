@@ -1,0 +1,314 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* EcoSentinel Design System - Earth & Nature Theme */
+
+@layer base {
+  :root {
+    /* Core earth/nature palette */
+    --background: 150 15% 6%;
+    --foreground: 60 10% 95%;
+
+    --card: 150 12% 10%;
+    --card-foreground: 60 10% 95%;
+
+    --popover: 150 12% 10%;
+    --popover-foreground: 60 10% 95%;
+
+    /* Primary: Forest Emerald */
+    --primary: 152 60% 42%;
+    --primary-foreground: 150 15% 6%;
+
+    /* Secondary: Warm Earth */
+    --secondary: 35 25% 18%;
+    --secondary-foreground: 60 10% 95%;
+
+    /* Muted: Forest floor */
+    --muted: 150 10% 15%;
+    --muted-foreground: 90 10% 55%;
+
+    /* Accent: Ocean Blue */
+    --accent: 200 70% 50%;
+    --accent-foreground: 60 10% 95%;
+
+    /* Success: Leaf Green */
+    --success: 142 60% 50%;
+    --success-foreground: 150 15% 6%;
+
+    /* Warning: Sunset Amber */
+    --warning: 30 85% 55%;
+    --warning-foreground: 150 15% 6%;
+
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 60 10% 95%;
+
+    --border: 150 12% 20%;
+    --input: 150 12% 20%;
+    --ring: 152 60% 42%;
+
+    --radius: 0.75rem;
+
+    /* Nature tokens */
+    --glow-leaf: 152 60% 42%;
+    --glow-ocean: 200 70% 50%;
+    --glow-sun: 45 80% 55%;
+    --earth-start: 150 20% 8%;
+    --earth-end: 200 30% 6%;
+
+    --sidebar-background: 150 12% 8%;
+    --sidebar-foreground: 60 10% 95%;
+    --sidebar-primary: 152 60% 42%;
+    --sidebar-primary-foreground: 150 15% 6%;
+    --sidebar-accent: 35 25% 18%;
+    --sidebar-accent-foreground: 60 10% 95%;
+    --sidebar-border: 150 12% 20%;
+    --sidebar-ring: 152 60% 42%;
+  }
+
+  .dark {
+    --background: 150 15% 6%;
+    --foreground: 60 10% 95%;
+    --card: 150 12% 10%;
+    --card-foreground: 60 10% 95%;
+    --popover: 150 12% 10%;
+    --popover-foreground: 60 10% 95%;
+    --primary: 152 60% 42%;
+    --primary-foreground: 150 15% 6%;
+    --secondary: 35 25% 18%;
+    --secondary-foreground: 60 10% 95%;
+    --muted: 150 10% 15%;
+    --muted-foreground: 90 10% 55%;
+    --accent: 200 70% 50%;
+    --accent-foreground: 60 10% 95%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 60 10% 95%;
+    --border: 150 12% 20%;
+    --input: 150 12% 20%;
+    --ring: 152 60% 42%;
+    --sidebar-background: 150 12% 8%;
+    --sidebar-foreground: 60 10% 95%;
+    --sidebar-primary: 152 60% 42%;
+    --sidebar-primary-foreground: 150 15% 6%;
+    --sidebar-accent: 35 25% 18%;
+    --sidebar-accent-foreground: 60 10% 95%;
+    --sidebar-border: 150 12% 20%;
+    --sidebar-ring: 152 60% 42%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Nature card - soft shadow, warm feel */
+  .glass-card {
+    @apply bg-card/60 backdrop-blur-sm border border-border/40 rounded-xl;
+    box-shadow: 0 2px 20px -5px hsl(0 0% 0% / 0.3);
+  }
+
+  /* Soft glow effects (replaces neon glows) */
+  .glow-cyan {
+    box-shadow: 0 4px 20px hsl(var(--glow-leaf) / 0.2);
+  }
+
+  .glow-violet {
+    box-shadow: 0 4px 20px hsl(var(--glow-ocean) / 0.2);
+  }
+
+  .glow-emerald {
+    box-shadow: 0 4px 20px hsl(var(--glow-sun) / 0.2);
+  }
+
+  /* Clean text - no glow */
+  .text-glow-cyan {
+    color: hsl(var(--primary));
+  }
+
+  .text-glow-violet {
+    color: hsl(var(--accent));
+  }
+
+  /* Subtle gradient border */
+  .gradient-border {
+    position: relative;
+    border: 1px solid hsl(var(--primary) / 0.15);
+  }
+
+  .gradient-border::before {
+    display: none;
+  }
+
+  .gradient-border:hover {
+    border-color: hsl(var(--primary) / 0.35);
+  }
+
+  /* Earth gradient background */
+  .nebula-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--earth-start)),
+      hsl(var(--earth-end))
+    );
+  }
+
+  /* Pulse ring */
+  .pulse-ring {
+    animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Section heading - green to blue gradient */
+  .section-heading {
+    @apply text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent;
+  }
+
+  /* Stat card - warm hover */
+  .stat-card {
+    @apply glass-card p-6 transition-all duration-300 hover:scale-[1.03];
+  }
+
+  .stat-card:hover {
+    box-shadow: 0 8px 30px hsl(var(--glow-leaf) / 0.15);
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Keyframe animations */
+@keyframes pulse-ring {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+@keyframes sway {
+  0%, 100% {
+    transform: translateX(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateX(8px) rotate(3deg);
+  }
+  75% {
+    transform: translateX(-8px) rotate(-3deg);
+  }
+}
+
+/* Keep twinkle for reuse as gentle shimmer */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes data-flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-drift {
+  animation: drift 15s linear infinite;
+}
+
+.animate-sway {
+  animation: sway 4s ease-in-out infinite;
+}
+
+.animate-orbit {
+  animation: drift 20s linear infinite;
+}
+
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+.animate-scan-line {
+  animation: scan-line 3s linear infinite;
+}
+
+.animate-data-flow {
+  animation: data-flow 2s ease-in-out infinite;
+}
